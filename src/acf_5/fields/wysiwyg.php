@@ -50,7 +50,7 @@ class acf_qtranslate_acf_5_wysiwyg extends acf_field_wysiwyg {
 		add_filter( 'acf_the_content', 'do_shortcode', 11);
 
 		// actions
-		add_action('acf/input/admin_footer_js', 	array($this, 'input_admin_footer_js'));
+		add_action('acf/input/admin_footer', array($this, 'input_admin_footer'));
 
 		acf_field::__construct();
 	}
@@ -140,11 +140,11 @@ class acf_qtranslate_acf_5_wysiwyg extends acf_field_wysiwyg {
 					</div>
 					<?php endif; ?>
 					<?php if( user_can_richedit() && $show_tabs ): ?>
-						<div class="wp-editor-tabs">
-							<button id="<?php echo $id; ?>-tmce" class="wp-switch-editor switch-tmce" onclick="switchEditors.switchto(this);" type="button"><?php echo __('Visual', 'acf'); ?></button>
-							<button id="<?php echo $id; ?>-html" class="wp-switch-editor switch-html" onclick="switchEditors.switchto(this);" type="button"><?php echo _x( 'Text', 'Name for the Text editor tab (formerly HTML)', 'acf' ); ?></button>
-						</div>
-					<?php endif; ?>
+					<div class="wp-editor-tabs">
+						<button id="<?php echo $id; ?>-tmce" class="wp-switch-editor switch-tmce" data-wp-editor-id="<?php echo $id; ?>" type="button"><?php echo __('Visual', 'acf'); ?></button>
+						<button id="<?php echo $id; ?>-html" class="wp-switch-editor switch-html" data-wp-editor-id="<?php echo $id; ?>" type="button"><?php echo _x( 'Text', 'Name for the Text editor tab (formerly HTML)', 'acf' ); ?></button>
+					</div>
+				<?php endif; ?>
 				</div>
 				<div id="wp-<?php echo $id; ?>-editor-container" class="wp-editor-container">
 					<textarea id="<?php echo $id; ?>" class="qtx-wp-editor-area" name="<?php echo $name; ?>" <?php if($height): ?>style="height:<?php echo $height; ?>px;"<?php endif; ?>><?php echo $value; ?></textarea>
